@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>木人艸X尾牙服務 | 讓尾牙活動變簡單</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#C8102E', // 正紅色
+            secondary: '#9E1C28', // 深紅色
+            gold: '#D4AF37',     // 金色
+            goldLight: '#F8EFD4', // 淺金色
+            dark: '#1A1A1A',
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+            notoSans: ['"Noto Sans TC"', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      }
+      .text-shadow-gold {
+        text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+      }
+      .hover-lift {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .hover-lift:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      }
+      .image-zoom {
+        transition: transform 0.5s ease;
+      }
+      .image-zoom:hover {
+        transform: scale(1.03);
+      }
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+      }
+      .faq-answer.active {
+        max-height: 500px;
+        transition: max-height 0.6s ease-in;
+      }
+      .lantern-swing {
+        animation: swing 3s ease-in-out infinite;
+        transform-origin: top;
+      }
+      @keyframes swing {
+        0% { transform: rotate(-5deg); }
+        50% { transform: rotate(5deg); }
+        100% { transform: rotate(-5deg); }
+      }
+      .firework {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        opacity: 0;
+      }
+      .scroll-reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+      .scroll-reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-notoSans text-dark bg-white overflow-x-hidden">
+  <!-- 裝飾用小燈籠 -->
+  <div class="fixed top-16 left-4 z-40 hidden md:block lantern-swing">
+    <div class="w-10 h-16 bg-primary rounded-full relative">
+      <div class="absolute top-2 left-1/2 transform -translate-x-1/2 w-1 h-10 bg-gold"></div>
+      <div class="absolute bottom-3 left-1/2 transform -translate-x-1/2 text-gold text-xs">福</div>
+    </div>
+  </div>
+  <div class="fixed top-20 right-4 z-40 hidden md:block lantern-swing" style="animation-delay: 0.5s;">
+    <div class="w-10 h-16 bg-primary rounded-full relative">
+      <div class="absolute top-2 left-1/2 transform -translate-x-1/2 w-1 h-10 bg-gold"></div>
+      <div class="absolute bottom-3 left-1/2 transform -translate-x-1/2 text-gold text-xs">春</div>
+    </div>
+  </div>
+
+  <!-- 导航栏 -->
+  <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 py-4">
+    <div class="container mx-auto px-4 md:px-8 flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold text-white text-shadow flex items-center">
+        <span class="mr-2 text-gold"><i class="fa fa-star"></i></span>
+        木人艸
+        <span class="ml-2 text-gold"><i class="fa fa-star"></i></span>
+      </a>
+      <div class="hidden md:flex space-x-8">
+        <a href="#services" class="text-white hover:text-gold transition-colors">服務介紹</a>
+        <a href="#cases" class="text-white hover:text-gold transition-colors">案例展示</a>
+        <a href="#faq" class="text-white hover:text-gold transition-colors">常見問題</a>
+        <a href="#contact" class="text-white hover:text-gold transition-colors">立即諮詢</a>
+      </div>
+      <button class="md:hidden text-white text-2xl">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- 英雄区 -->
+  <section class="h-screen flex items-center justify-center bg-cover bg-center relative overflow-hidden" style="background-image: url('https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/0e09394704ff4224932328c156d5e183.jpg~tplv-a9rns2rl98-24-95-exif:960:960.image?rcl=202511051559556028020BF1CF81A87F6A&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1762934395&x-signature=lhTf7vVljBSbuxFNK900BL8mvl0%3D');">
+    <!-- 半透明紅色疊加層增強節慶感 -->
+    <div class="absolute inset-0 bg-primary/30 z-0"></div>
+    
+    <!-- 裝飾用燈籠 -->
+    <div class="absolute top-1/4 left-10 w-16 h-24 bg-primary rounded-full z-10 lantern-swing hidden lg:block">
+      <div class="absolute top-2 left-1/2 transform -translate-x-1/2 w-1 h-16 bg-gold"></div>
+      <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-gold">福</div>
+    </div>
+    <div class="absolute top-1/3 right-16 w-20 h-28 bg-primary rounded-full z-10 lantern-swing hidden lg:block" style="animation-delay: 0.8s;">
+      <div class="absolute top-2 left-1/2 transform -translate-x-1/2 w-1 h-20 bg-gold"></div>
+      <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2 text-gold">春</div>
+    </div>
+    
+    <div class="container mx-auto px-4 text-center relative z-20">
+      <h1 class="text-[clamp(2.5rem,8vw,5rem)] font-bold text-white text-shadow-gold mb-4">
+        木人艸X尾牙服務
+      </h1>
+      <p class="text-[clamp(1rem,3vw,1.5rem)] text-white text-shadow mb-8 max-w-3xl mx-auto">
+        替你把尾牙活動變簡單：到府佈置、節慶餐點、貼心動線，預算內打造有儀式感、好拍又好吃的年終慶典
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="#contact" class="inline-block bg-primary hover:bg-secondary text-white font-semibold py-3 px-8 rounded-full transition-all hover-lift border-2 border-gold/30">
+          立即預約諮詢
+        </a>
+        <a href="#cases" class="inline-block bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white font-semibold py-3 px-8 rounded-full transition-all hover-lift border border-white/30">
+          查看尾牙案例
+        </a>
+      </div>
+      
+      <!-- 年節裝飾元素 -->
+      <div class="mt-12 flex justify-center gap-6">
+        <span class="text-gold text-2xl"><i class="fa fa-fireworks"></i></span>
+        <span class="text-gold text-2xl"><i class="fa fa-gift"></i></span>
+        <span class="text-gold text-2xl"><i class="fa fa-cutlery"></i></span>
+      </div>
+    </div>
+    
+    <!-- 底部裝飾紋理 -->
+    <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-dark/70 to-transparent z-10"></div>
+  </section>
+
+  <!-- 服務介紹 -->
+  <section id="services" class="py-20 bg-gradient-to-b from-white to-goldLight/30">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 scroll-reveal">
+        <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold mb-4 relative inline-block">
+          我們的尾牙服務
+          <span class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-primary"></span>
+        </h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">為您打造難忘的年終慶典，從場地布置到餐點規劃，一站式服務讓您輕鬆辦尾牙</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- 到府佈置 -->
+        <div class="bg-white rounded-xl p-8 hover-lift shadow-md scroll-reveal">
+          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 border-2 border-primary/20">
+            <i class="fa fa-home text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-semibold mb-4 flex items-center">
+            <span class="text-gold mr-2"><i class="fa fa-star"></i></span>
+            到府佈置
+          </h3>
+          <p class="text-gray-600">
+            專業團隊打造紅金喜慶風、傳統年節風等多種主題，融入春聯、燈籠、鞭炮等年節元素，營造濃厚尾牙氛圍，每個角落都充滿年節氣息。
+          </p>
+        </div>
+
+        <!-- 節慶餐點 -->
+        <div class="bg-white rounded-xl p-8 hover-lift shadow-md scroll-reveal" style="transition-delay: 0.2s;">
+          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 border-2 border-primary/20">
+            <i class="fa fa-cutlery text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-semibold mb-4 flex items-center">
+            <span class="text-gold mr-2"><i class="fa fa-star"></i></span>
+            節慶餐點
+          </h3>
+          <p class="text-gray-600">
+            主廚團隊研發年節特色菜單，包含元寶餃子、富貴魚、年年有餘等吉祥料理，兼顧傳統口味與創意呈現，讓尾牙聚餐更具意義。
+          </p>
+        </div>
+
+        <!-- 活動策劃 -->
+        <div class="bg-white rounded-xl p-8 hover-lift shadow-md scroll-reveal" style="transition-delay: 0.4s;">
+          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 border-2 border-primary/20">
+            <i class="fa fa-gift text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-semibold mb-4 flex items-center">
+            <span class="text-gold mr-2"><i class="fa fa-star"></i></span>
+            活動策劃
+          </h3>
+          <p class="text-gray-600">
+            包含抽獎活動規劃、年節遊戲設計、紅包兌換等環節，搭配專業主持與音樂，讓尾牙活動熱鬧有趣，員工互動歡樂，增進團隊凝聚力。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 案例展示 -->
+  <section id="cases" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 scroll-reveal">
+        <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold mb-4 relative inline-block">
+          尾牙案例展示
+          <span class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-primary"></span>
+        </h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">各式各樣的尾牙慶典實例，從小型家庭聚會到大型企業活動，我們都能完美呈現</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- 案例1 -->
+        <div class="rounded-xl overflow-hidden shadow-lg hover-lift scroll-reveal">
+          <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/77206a4309ea4890a11eaebbb0038bbb.jpg~tplv-a9rns2rl98-24-95-exif:960:960.image?rcl=202511051559556028020BF1CF81A87F6A&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1762934395&x-signature=3aBFNnjWjrZvWY1lU9re44dpeKI%3D" alt="企業尾牙佈置" class="w-full h-64 object-cover image-zoom">
+          <div class="p-6 bg-white">
+            <h3 class="text-xl font-semibold mb-2 flex items-center">
+              <i class="fa fa-building text-primary mr-2"></i>
+              企業尾牙佈置實例
+            </h3>
+            <p class="text-gray-600">紅金主題搭配燈籠與春聯元素，舞台設計融入生肖圖騰，營造喜慶熱鬧的年節氛圍。</p>
+          </div>
+        </div>
+
+        <!-- 案例2 -->
+        <div class="rounded-xl overflow-hidden shadow-lg hover-lift scroll-reveal" style="transition-delay: 0.2s;">
+          <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/9407f9b747e54191a8b6294c0ca9a837.jpg~tplv-a9rns2rl98-24-95-exif:960:960.image?rcl=202511051559556028020BF1CF81A87F6A&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1762934395&x-signature=QbZ%2F3ZmcJ%2Fj%2BapcwFEOsDaCRA5k%3D" alt="尾牙餐點" class="w-full h-64 object-cover image-zoom">
+          <div class="p-6 bg-white">
+            <h3 class="text-xl font-semibold mb-2 flex items-center">
+              <i class="fa fa-cutlery text-primary mr-2"></i>
+              年節特色餐點
+            </h3>
+            <p class="text-gray-600">融合傳統年菜與創意料理，餐點裝盤搭配紅金容器與年節裝飾，視覺與味覺雙重享受。</p>
+          </div>
+        </div>
+
+        <!-- 案例3 -->
+        <div class="rounded-xl overflow-hidden shadow-lg hover-lift scroll-reveal" style="transition-delay: 0.4s;">
+          <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/b70e6b484dbb4a568f037fa029461099.jpg~tplv-a9rns2rl98-24-95-exif:960:960.image?rcl=202511051559556028020BF1CF81A87F6A&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1762934395&x-signature=p%2FxdiOnjOmemq2HUP05w5uDP6Yw%3D" alt="抽獎活動" class="w-full h-64 object-cover image-zoom">
+          <div class="p-6 bg-white">
+            <h3 class="text-xl font-semibold mb-2 flex items-center">
+              <i class="fa fa-gift text-primary mr-2"></i>
+              尾牙抽獎活動
+            </h3>
+            <p class="text-gray-600">精心設計的抽獎環節，獎品陳列搭配喜慶佈置，主持人帶動氣氛，讓全場歡呼不斷。</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 吉祥話裝飾 -->
+      <div class="mt-16 text-center">
+        <div class="inline-block bg-goldLight/50 px-6 py-3 rounded-full">
+          <p class="text-primary font-medium">金兔迎春 · 財源廣進 · 闔家歡樂 · 事業興隆</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ部分 -->
+  <section id="faq" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 scroll-reveal">
+        <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold mb-4 relative inline-block">
+          尾牙常見問題
+          <span class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-primary"></span>
+        </h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">關於尾牙規劃的疑問，我們為您一一解答</p>
+      </div>
+      
+      <div class="max-w-3xl mx-auto space-y-6">
+        <!-- FAQ項目1 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-sm scroll-reveal">
+          <button class="faq-question w-full flex justify-between items-center p-6 text-left font-semibold text-lg hover:bg-gray-50 transition-colors">
+            <span>請問尾牙服務需要提前多久預約？</span>
+            <i class="fa fa-plus text-primary transition-transform duration-300"></i>
+          </button>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-gray-600">建議至少提前1-2個月預約，尤其每年11月至隔年2月是尾牙旺季，提前預約可確保團隊時段與資源安排。若臨時需要服務（2週內），可聯繫我們確認是否有空檔，但建議越早規劃越能確保服務品質。</p>
+          </div>
+        </div>
+
+        <!-- FAQ項目2 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-sm scroll-reveal" style="transition-delay: 0.1s;">
+          <button class="faq-question w-full flex justify-between items-center p-6 text-left font-semibold text-lg hover:bg-gray-50 transition-colors">
+            <span>可以客製化尾牙主題與菜單嗎？</span>
+            <i class="fa fa-plus text-primary transition-transform duration-300"></i>
+          </button>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-gray-600">當然可以！我們提供完全客製化服務，可依據公司文化、預算與喜好規劃主題（如：懷舊年節風、時尚派對風等）。菜單也可量身打造，包含素食、清真等特殊需求，並融入年節吉祥菜色，增添節慶意義。</p>
+          </div>
+        </div>
+
+        <!-- FAQ項目3 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-sm scroll-reveal" style="transition-delay: 0.2s;">
+          <button class="faq-question w-full flex justify-between items-center p-6 text-left font-semibold text-lg hover:bg-gray-50 transition-colors">
+            <span>尾牙抽獎活動有提供規劃服務嗎？</span>
+            <i class="fa fa-plus text-primary transition-transform duration-300"></i>
+          </button>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-gray-600">是的，我們提供完整的抽獎活動規劃，包含獎品建議、抽獎方式設計、獎品陳列與包裝，並搭配專業主持人帶動現場氣氛。常見的抽獎方式有：幸運大轉盤、紅包牆、刮刮卡等，可依據活動規模選擇合適形式。</p>
+          </div>
+        </div>
+
+        <!-- FAQ項目4 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-sm scroll-reveal" style="transition-delay: 0.3s;">
+          <button class="faq-question w-full flex justify-between items-center p-6 text-left font-semibold text-lg hover:bg-gray-50 transition-colors">
+            <span>服務範圍包含哪些地區？</span>
+            <i class="fa fa-plus text-primary transition-transform duration-300"></i>
+          </button>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-gray-600">目前主要服務範圍為北部地區（台北、新北、基隆、桃園、新竹），中部地區（台中、彰化、南投）需視活動規模與地點評估是否加收交通費用。南部地區暫不提供常規服務，特殊大型活動可個案討論。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 表單區 -->
+  <section id="contact" class="py-20 bg-gradient-to-b from-white to-goldLight/20 relative overflow-hidden">
+    <!-- 裝飾元素 -->
+    <div class="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full -mr-32 -mt-32"></div>
+    <div class="absolute bottom-0 left-0 w-80 h-80 bg-primary/5 rounded-full -ml-40 -mb-40"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center mb-16 scroll-reveal">
+        <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold mb-4 relative inline-block">
+          預約您的尾牙服務
+          <span class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-primary"></span>
+        </h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">填寫以下表單，我們將盡快與您聯繫，為您規劃完美的尾牙慶典</p>
+      </div>
+      
+      <div class="max-w-3xl mx-auto bg-white rounded-xl p-8 shadow-lg scroll-reveal">
+        <form action="https://formspree.io/f/xdoywvoe" method="POST" class="space-y-6">
+          <div>
+            <label for="name" class="block text-lg font-medium mb-2">姓名</label>
+            <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition">
+          </div>
+          <div>
+            <label for="phone" class="block text-lg font-medium mb-2">電話</label>
+            <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition">
+          </div>
+          <div>
+            <label for="people" class="block text-lg font-medium mb-2">參加人數</label>
+            <input type="text" id="people" name="people" placeholder="例如：50人、100人等" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition">
+          </div>
+          <div>
+            <label for="budget" class="block text-lg font-medium mb-2">預算範圍</label>
+            <input type="text" id="budget" name="budget" placeholder="例如：5萬以下、5-10萬等" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition">
+          </div>
+          <div>
+            <label for="event-date" class="block text-lg font-medium mb-2">預計活動日期</label>
+            <input type="text" id="event-date" name="event-date" placeholder="例如：12月25日、1月中旬等" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition">
+          </div>
+          <div>
+            <label for="notes" class="block text-lg font-medium mb-2">特殊需求</label>
+            <textarea id="notes" name="notes" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition" placeholder="例如：需要抽獎活動、素食餐點等"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-primary hover:bg-secondary text-white font-semibold py-3 px-8 rounded-full transition-all hover-lift border-2 border-gold/20">
+            提交尾牙諮詢
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="bg-dark text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-8">
+        <h3 class="text-2xl font-bold mb-2 flex items-center justify-center">
+          <span class="mr-2 text-gold"><i class="fa fa-star"></i></span>
+          木人艸尾牙服務
+          <span class="ml-2 text-gold"><i class="fa fa-star"></i></span>
+        </h3>
+        <p class="text-gray-400">讓每場尾牙都成為難忘的年終慶典</p>
+      </div>
+      
+      <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-8">
+        <a href="#services" class="text-gray-300 hover:text-gold transition-colors">服務介紹</a>
+        <a href="#cases" class="text-gray-300 hover:text-gold transition-colors">案例展示</a>
+        <a href="#faq" class="text-gray-300 hover:text-gold transition-colors">常見問題</a>
+        <a href="#contact" class="text-gray-300 hover:text-gold transition-colors">預約諮詢</a>
+      </div>
+      
+      <div class="text-center text-gray-400 mb-6">
+        <p>聯絡信箱：admin_1@muzentsao.com</p>
+        <p class="mt-2">服務熱線：(02) 1234-5678</p>
+      </div>
+      
+      <div class="text-center text-gold mb-6">
+        <p>祝您尾牙順利，新年行大運！</p>
+      </div>
+      
+      <div class="text-center text-gray-500 text-sm">
+        <p>© 2025 木人艸尾牙服務 版權所有</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 导航栏滚动效果
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-white', 'shadow-md');
+        navbar.classList.remove('py-4');
+        navbar.classList.add('py-2');
+        navbar.querySelectorAll('a').forEach(a => {
+          a.classList.remove('text-white');
+          a.classList.add('text-dark', 'hover:text-primary');
+        });
+        // 改變Logo顏色
+        navbar.querySelector('a').classList.remove('text-white');
+        navbar.querySelector('a').classList.add('text-dark');
+      } else {
+        navbar.classList.remove('bg-white', 'shadow-md');
+        navbar.classList.remove('py-2');
+        navbar.classList.add('py-4');
+        navbar.querySelectorAll('a').forEach(a => {
+          a.classList.add('text-white');
+          a.classList.remove('text-dark', 'hover:text-primary');
+        });
+        // 恢復Logo顏色
+        navbar.querySelector('a').classList.add('text-white');
+        navbar.querySelector('a').classList.remove('text-dark');
+      }
+    });
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // FAQ 交互效果
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        const icon = question.querySelector('i');
+        
+        // 切换当前FAQ的显示状态
+        answer.classList.toggle('active');
+        icon.classList.toggle('fa-plus');
+        icon.classList.toggle('fa-minus');
+        icon.classList.toggle('rotate-45');
+      });
+    });
+
+    // 滚动顯示動畫
+    function checkScroll() {
+      const elements = document.querySelectorAll('.scroll-reveal');
+      elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        if (elementTop < window.innerHeight - elementVisible) {
+          element.classList.add('active');
+        }
+      });
+    }
+
+    // 初始化檢查
+    window.addEventListener('scroll', checkScroll);
+    window.addEventListener('load', checkScroll);
+
+    // 簡單的煙花效果
+    function createFireworks() {
+      const container = document.body;
+      const fireworksCount = 15;
+      
+      for (let i = 0; i < fireworksCount; i++) {
+        const firework = document.createElement('div');
+        firework.classList.add('firework');
+        
+        // 隨機位置
+        const x = Math.random() * 100;
+        const y = Math.random() * 60 + 20;
+        
+        // 隨機顏色
+        const colors = ['#C8102E', '#D4AF37', '#ffffff', '#F8EFD4'];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        
+        firework.style.left = `${x}%`;
+        firework.style.top = `${y}%`;
+        firework.style.backgroundColor = color;
+        
+        container.appendChild(firework);
+        
+        // 動畫效果
+        setTimeout(() => {
+          firework.style.opacity = '1';
+          firework.style.transform = 'scale(10)';
+          firework.style.transition = 'all 1s ease-out';
+        }, 100 * i);
+        
+        // 移除元素
+        setTimeout(() => {
+          firework.remove();
+        }, 2000 + 100 * i);
+      }
+    }
+
+    // 頁面加載和滾動到特定位置時顯示煙花
+    window.addEventListener('load', () => {
+      setTimeout(createFireworks, 1500);
+    });
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > window.innerHeight * 1.5 && window.scrollY < window.innerHeight * 1.6) {
+        createFireworks();
+      }
+    });
+  </script>
+</body>
+</html>
