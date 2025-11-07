@@ -399,35 +399,75 @@
       </div>
       
       <div class="max-w-3xl mx-auto bg-white rounded-xl p-8 shadow-lg scroll-reveal">
-        <form action="https://formspree.io/f/xdoywvoe" method="POST" class="space-y-6">
-          <div>
-            <label for="name" class="block text-lg font-medium mb-2">姓名</label>
-            <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition">
-          </div>
-          <div>
-            <label for="phone" class="block text-lg font-medium mb-2">電話</label>
-            <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition">
-          </div>
-          <div>
-            <label for="people" class="block text-lg font-medium mb-2">參加人數</label>
-            <input type="text" id="people" name="people" placeholder="例如：50人、100人等" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition">
-          </div>
-          <div>
-            <label for="budget" class="block text-lg font-medium mb-2">預算範圍</label>
-            <input type="text" id="budget" name="budget" placeholder="例如：5萬以下、5-10萬等" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition">
-          </div>
-          <div>
-            <label for="event-date" class="block text-lg font-medium mb-2">預計活動日期</label>
-            <input type="text" id="event-date" name="event-date" placeholder="例如：12月25日、1月中旬等" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition">
-          </div>
-          <div>
-            <label for="notes" class="block text-lg font-medium mb-2">特殊需求</label>
-            <textarea id="notes" name="notes" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition" placeholder="例如：需要抽獎活動、素食餐點等"></textarea>
-          </div>
-          <button type="submit" class="w-full bg-primary hover:bg-secondary text-white font-semibold py-3 px-8 rounded-full transition-all hover-lift border-2 border-gold/20">
-            提交尾牙諮詢
-          </button>
-        </form>
+        <form action="https://formspree.io/f/xdoywvoe" method="POST" class="form-card">
+  <!-- 上方兩欄 -->
+  <div class="form-grid">
+    <div>
+      <label for="name" class="form-label">姓名</label>
+      <input type="text" id="name" name="name" required class="form-input" placeholder="王小明">
+    </div>
+    <div>
+      <label for="phone" class="form-label">電話</label>
+      <input type="tel" id="phone" name="phone" required class="form-input" placeholder="09xx-xxx-xxx">
+    </div>
+  </div>
+
+  <!-- 第二排兩欄 -->
+  <div class="form-grid mt-6">
+    <div>
+      <label for="event-date" class="form-label">預計活動日期</label>
+      <input type="text" id="event-date" name="event-date" required class="form-input" placeholder="例如：12/25、1月中旬、或三個候選日期">
+    </div>
+    <div>
+      <label for="people" class="form-label">參加人數</label>
+      <input type="text" id="people" name="people" required class="form-input" placeholder="例如：50、100">
+    </div>
+  </div>
+
+  <!-- 第三排兩欄：預算 & 類型（和聖誕頁結構一致） -->
+  <div class="form-grid mt-6">
+    <div>
+      <label for="budget" class="form-label">預算範圍</label>
+      <select id="budget" name="budget" class="form-select">
+        <option value="">請選擇預算範圍</option>
+        <option>50,000元 - 60,000元</option>
+        <option>60,000元 - 70,000元</option>
+        <option>70,000元 - 100,000元</option>
+        <option>100,000元以上</option>
+      </select>
+    </div>
+    <div>
+      <label for="event-type" class="form-label">活動類型</label>
+      <select id="event-type" name="event-type" class="form-select">
+        <option value="">請選擇活動類型</option>
+        <option>企業聚會</option>
+        <option>校園活動</option>
+        <option>教會慶典</option>
+        <option>家庭聚會</option>
+        <option>其他</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- 備註 -->
+  <div class="mt-6">
+    <label for="notes" class="form-label">備註</label>
+    <textarea id="notes" name="notes" class="form-textarea" placeholder="如需抽獎、素食/清真、無酒精飲品、Logo 小旗等，請在此備註"></textarea>
+    <p class="form-hint">我們將於 24 小時內與您聯繫，協助規劃最合適的方案。</p>
+  </div>
+
+  <!-- 蜜罐欄位（防機器人，與聖誕頁思路一致） -->
+  <div class="hidden" aria-hidden="true">
+    <label>請勿填寫此欄位</label>
+    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+  </div>
+
+  <!-- 送出 -->
+  <div class="mt-8 flex flex-col sm:flex-row gap-4">
+    <button type="submit" class="btn-primary">提交預約</button>
+    <a href="tel:0228832113" class="btn-primary md:w-auto">電話諮詢</a>
+  </div>
+</form>
       </div>
     </div>
   </section>
