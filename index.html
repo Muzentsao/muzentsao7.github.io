@@ -79,7 +79,7 @@
       }
     }
     @layer components {
-  .form-card { @apply bg-white rounded-2xl shadow-xl overflow-hidden; }
+  .form-card { @apply bg-white rounded-xl shadow-xl overflow-hidden; }
   .form-pane { @apply p-8 md:p-12; }
   .form-label { @apply block text-gray-700 font-medium mb-2; }
   .form-input {
@@ -90,10 +90,10 @@
   .form-select { @apply form-input; }
   .form-textarea { @apply form-input min-h-[120px]; }
   .btn-primary {
-    @apply w-full bg-primary hover:bg-secondary text-white
-           font-semibold py-3 px-6 rounded-lg transition-all
-           transform hover:scale-105 border-2 border-gold/20;
-  }
+  @apply w-full bg-primary hover:bg-secondary text-white
+         font-semibold py-4 px-8 rounded-full transition-all
+         transform hover:scale-105 border-2 border-gold/20;
+}
 }
 
 
@@ -529,39 +529,88 @@
     </div>
   </div>
 </section>
-  <!-- 页脚 -->
-  <footer class="bg-dark text-white py-12">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-8">
-        <h3 class="text-2xl font-bold mb-2 flex items-center justify-center">
-          <span class="mr-2 text-gold"><i class="fa fa-star"></i></span>
-          木人艸尾牙服務
-          <span class="ml-2 text-gold"><i class="fa fa-star"></i></span>
-        </h3>
-        <p class="text-gray-400">讓每場尾牙都成為難忘的年終慶典</p>
+  <footer class="bg-dark text-white py-12 px-6">
+  <div class="container mx-auto">
+    <!-- 四欄 -->
+    <div class="grid md:grid-cols-4 gap-8 mb-8">
+      <!-- 品牌/口號 -->
+      <div>
+        <h3 class="text-xl font-bold mb-4">木人艸</h3>
+        <p class="text-gray-400 mb-4">尾牙／春酒服務</p>
+        <p class="text-gray-400">讓每場年終聚會都難忘而有儀式感</p>
       </div>
-      
-      <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-8">
-        <a href="#services" class="text-gray-300 hover:text-gold transition-colors">服務介紹</a>
-        <a href="#cases" class="text-gray-300 hover:text-gold transition-colors">案例展示</a>
-        <a href="#faq" class="text-gray-300 hover:text-gold transition-colors">常見問題</a>
-        <a href="#contact" class="text-gray-300 hover:text-gold transition-colors">預約諮詢</a>
+
+      <!-- 快速連結 -->
+      <div>
+        <h4 class="footer-title">快速連結</h4>
+        <ul class="space-y-2">
+          <li><a href="#services" class="footer-link">我們的服務</a></li>
+          <li><a href="#cases" class="footer-link">案例展示</a></li>
+          <li><a href="#faq" class="footer-link">常見問題</a></li>
+          <li><a href="#contact" class="footer-link">聯繫我們</a></li>
+        </ul>
       </div>
-      
-      <div class="text-center text-gray-400 mb-6">
-        <p>聯絡信箱：admin_1@muzentsao.com</p>
-        <p class="mt-2">服務熱線：(02) 1234-5678</p>
+
+      <!-- 服務項目（可按你的實際提供調整） -->
+      <div>
+        <h4 class="footer-title">服務項目</h4>
+        <ul class="space-y-2">
+          <li><a href="#services" class="footer-link">到府佈置</a></li>
+          <li><a href="#services" class="footer-link">節慶餐點</a></li>
+          <li><a href="#services" class="footer-link">活動策劃</a></li>
+          <li><a href="#services" class="footer-link">貼心動線</a></li>
+        </ul>
       </div>
-      
-      <div class="text-center text-gold mb-6">
-        <p>祝您尾牙順利，新年行大運！</p>
-      </div>
-      
-      <div class="text-center text-gray-500 text-sm">
-        <p>© 2025 木人艸尾牙服務 版權所有</p>
+
+      <!-- 聯繫資訊（和聖誕節頁同格式） -->
+      <div>
+        <h4 class="footer-title">聯繫資訊</h4>
+        <ul class="space-y-2">
+          <li class="footer-item">
+            <i class="fa fa-phone mr-2 text-gold"></i>
+            <a href="tel:+886212345678" class="footer-link">(02) 1234-5678</a>
+          </li>
+          <li class="footer-item">
+            <i class="fa fa-envelope mr-2 text-gold"></i>
+            <a href="mailto:admin_1@muzentsao.com" class="footer-link">admin_1@muzentsao.com</a>
+          </li>
+          <li class="footer-item">
+            <i class="fa fa-map-marker mr-2 text-gold"></i>
+            <a href="https://maps.google.com/?q=%E5%8F%B0%E5%8C%97%E5%B8%82" target="_blank" rel="noopener" class="footer-link">
+              台北市（可放實際地址）
+            </a>
+          </li>
+        </ul>
+
+        <!-- 社群（可選，和聖誕節頁一致風格） -->
+        <div class="mt-4 flex space-x-3">
+          <a href="https://www.facebook.com/muzentsao/?locale=zh_TW" target="_blank" rel="noopener"
+             class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+             aria-label="Facebook">
+            <i class="fa fa-facebook"></i>
+          </a>
+          <a href="https://www.instagram.com/muzentsaocatering/" target="_blank" rel="noopener"
+             class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+             aria-label="Instagram">
+            <i class="fa fa-instagram"></i>
+          </a>
+          <a href="https://lin.ee/GDoyPqd"
+             onclick="try{window.location='line://ti/p/@muzentsao'; setTimeout(function(){window.open('https://lin.ee/GDoyPqd','_blank');},700);}catch(e){}"
+             target="_blank" rel="noopener"
+             class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+             aria-label="LINE">
+            <i class="fa fa-comment"></i>
+          </a>
+        </div>
       </div>
     </div>
-  </footer>
+
+    <!-- 版權列 -->
+    <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+      <p>&copy; 2025 木人艸尾牙／春酒服務. 保留所有權利.</p>
+    </div>
+  </div>
+</footer>
 
  <script>
   // 導航欄滾動效果
