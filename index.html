@@ -79,7 +79,7 @@
       }
     }
     @layer components {
-  .form-card { @apply bg-white rounded-2xl shadow-xl overflow-hidden; }
+  .form-card { @apply bg-white rounded-xl shadow-xl overflow-hidden; }
   .form-pane { @apply p-8 md:p-12; }
   .form-label { @apply block text-gray-700 font-medium mb-2; }
   .form-input {
@@ -90,9 +90,9 @@
   .form-select { @apply form-input; }
   .form-textarea { @apply form-input min-h-[120px]; }
   .btn-primary {
-  @apply w-full bg-primary hover:bg-primary/90 text-white
-         font-medium py-3 px-6 rounded-lg transition-all
-         transform hover:scale-105;
+  @apply w-full bg-primary hover:bg-secondary text-white
+         font-semibold py-4 px-8 rounded-full transition-all
+         transform hover:scale-105 border-2 border-gold/20;
 }
 }
 
@@ -543,25 +543,44 @@
       <!-- 快速連結 -->
       <div>
         <h4 class="footer-title">快速連結</h4>
+        <ul class="space-y-2">
+          <li><a href="#services" class="footer-link">我們的服務</a></li>
+          <li><a href="#cases" class="footer-link">案例展示</a></li>
+          <li><a href="#faq" class="footer-link">常見問題</a></li>
+          <li><a href="#contact" class="footer-link">聯繫我們</a></li>
+        </ul>
+      </div>
+
+      <!-- 服務項目（可按你的實際提供調整） -->
+      <div>
+        <h4 class="footer-title">服務項目</h4>
+        <ul class="space-y-2">
+          <li><a href="#services" class="footer-link">到府佈置</a></li>
+          <li><a href="#services" class="footer-link">節慶餐點</a></li>
+          <li><a href="#services" class="footer-link">活動策劃</a></li>
+          <li><a href="#services" class="footer-link">貼心動線</a></li>
+        </ul>
+      </div>
+
+      <!-- 聯繫資訊（和聖誕節頁同格式） -->
+      <div>
         <h4 class="footer-title">聯繫資訊</h4>
-<ul class="footer-list">
-  <li class="footer-item">
-    <i class="fa fa-phone footer-ico"></i>
-    <a href="tel:+886228832113" class="footer-link nowrap">(02) 2883-2113</a>
-  </li>
-  <li class="footer-item">
-    <i class="fa fa-envelope footer-ico"></i>
-    <a href="mailto:muzentsao@muzentsao.com" class="footer-link nowrap">muzentsao@muzentsao.com</a>
-  </li>
-  <li class="footer-item">
-    <i class="fa fa-map-marker footer-ico"></i>
-    <a href="https://maps.google.com/?q=台北市士林區後港街185號4樓"
-       target="_blank" rel="noopener"
-       class="footer-link">
-      台北市士林區後港街185號4樓
-    </a>
-  </li>
-</ul>
+        <ul class="space-y-2">
+          <li class="footer-item">
+            <i class="fa fa-phone mr-2 text-gold"></i>
+            <a href="tel:+886212345678" class="footer-link">(02) 2883-2113</a>
+          </li>
+          <li class="footer-item">
+            <i class="fa fa-envelope mr-2 text-gold"></i>
+            <a href="mailto:muzentsao@muzentsao.com" class="footer-link">muzentsao@muzentsao.com</a>
+          </li>
+          <li class="footer-item">
+            <i class="fa fa-map-marker mr-2 text-gold"></i>
+            <a href="https://maps.google.com/?q=%E5%8F%B0%E5%8C%97%E5%B8%82" target="_blank" rel="noopener" class="footer-link">
+              台北市士林區後港街185號4樓
+            </a>
+          </li>
+        </ul>
 
         <!-- 社群（可選，和聖誕節頁一致風格） -->
         <div class="mt-4 flex space-x-3">
