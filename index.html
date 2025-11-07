@@ -99,6 +99,14 @@
     @media (max-width: 640px) {
       #hero .backdrop-blur-sm { backdrop-filter: blur(2px); }
     }
+    /* Hero 文字輕度陰影，提升深色背景對比；只套在 #hero 之內 */
+#hero h1 { text-shadow: 0 2px 8px rgba(0,0,0,.35); }
+#hero p { text-shadow: 0 1px 4px rgba(0,0,0,.18); }
+
+/* 手機端稍微加強模糊，讓照片不搶字 */
+@media (max-width: 640px) {
+  #hero .backdrop-blur-sm { backdrop-filter: blur(3px); }
+}
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -137,32 +145,41 @@
     </div>
   </nav>
 
-  <!-- Hero -->
-  <section id="hero"
-    class="h-screen flex items-center justify-center bg-cover bg-center relative overflow-hidden"
-    style="background-image: url('https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/0e09394704ff4224932328c156d5e183.jpg~tplv-a9rns2rl98-24-95-exif:960:960.image?rcl=202511051559556028020BF1CF81A87F6A&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1762934395&x-signature=lhTf7vVljBSbuxFNK900BL8mvl0%3D');">
+<!-- 文字容器（替換你 #hero 裡原本的這一塊） -->
+<div class="container mx-auto px-4 text-center relative z-20">
+  <div class="inline-block rounded-2xl px-6 py-8 md:px-10 md:py-10 bg-black/35 backdrop-blur-sm">
+    <!-- Eyebrow 小標：全大寫、微字距 -->
+    <p class="uppercase tracking-[0.22em] text-xs sm:text-sm text-white/80">
+      YEAR-END & SPRING BANQUET
+    </p>
 
-    <!-- 文字容器：僅針對文字做極輕量背景＋模糊，避免整張圖被染色 -->
-    <div class="container mx-auto px-4 text-center relative z-20">
-      <div class="inline-block rounded-2xl px-6 py-6 md:px-10 md:py-8 bg-black/35 backdrop-blur-sm">
-        <h1 class="text-[clamp(2.5rem,8vw,5rem)] font-bold text-white mb-4">
-          木人艸X尾牙服務
-        </h1>
-        <p class="text-[clamp(1rem,3vw,1.5rem)] text-white/90 mb-8 max-w-3xl mx-auto">
-          替你把尾牙活動變簡單：到府佈置、節慶餐點、貼心動線，預算內打造有儀式感、好拍又好吃的年終慶典
-        </p>
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <a href="#contact"
-             class="inline-block bg-primary hover:bg-secondary text-white font-semibold py-3 px-8 rounded-full transition-all border-2 border-gold/30">
-            立即預約諮詢
-          </a>
-          <a href="#cases"
-             class="inline-block bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white font-semibold py-3 px-8 rounded-full transition-all border border-white/30">
-            查看尾牙案例
-          </a>
-        </div>
-      </div>
+    <!-- 主標：全大寫、寬字距、粗體、緊行高 -->
+    <h1 class="mt-3 text-white font-extrabold leading-tight tracking-widest
+               text-[clamp(2.25rem,6.8vw,5rem)]">
+      木人艸 X 尾牙服務
+    </h1>
+
+    <!-- 說明段：窄行寬、較淡白、舒適行高 -->
+    <p class="mt-4 text-white/85 text-[clamp(1rem,2.6vw,1.25rem)] max-w-[46ch] mx-auto leading-relaxed">
+      替你把尾牙活動變簡單：到府佈置、節慶餐點、貼心動線，預算內打造有儀式感、好拍又好吃的年終慶典。
+    </p>
+
+    <!-- CTA：單一主動作優先，間距乾淨 -->
+    <div class="mt-7 flex flex-col sm:flex-row justify-center gap-4">
+      <a href="#contact"
+         class="inline-flex items-center justify-center rounded-full px-7 py-3
+                text-sm font-semibold bg-white text-neutral-900 hover:bg-white/90 shadow">
+        立即預約諮詢
+      </a>
+      <a href="#cases"
+         class="inline-flex items-center justify-center rounded-full px-7 py-3
+                text-sm font-semibold border border-white/30 bg-white/10 hover:bg-white/20 text-white">
+        查看尾牙案例
+      </a>
     </div>
+  </div>
+</div>
+
 
     <!-- 只保留底部由黑到透明的細緩漸層，讓下緣銜接更順 -->
     <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
