@@ -677,16 +677,22 @@
 function setupFormSubmission() {
   const GAS_URL = 'https://script.google.com/macros/s/AKfycby756weZ-_e5IdekU9mKi7GTgd52pf6YXdmBLo_lirqCtiPb64_u8vc4e53aKnM5YvqFA/exec';
   const form = document.getElementById('contact-form');
+
+  console.log('setupFormSubmission 執行中，form =', form);
+
   if (!form) return;
 
-  form.addEventListener('submit', function(e) {
+  form.addEventListener('submit', function (e) {
     e.preventDefault();
+    console.log('表單 submit 被攔截');
+
     const btn = form.querySelector('button[type="submit"]');
     const original = btn.innerHTML;
     btn.disabled = true;
     btn.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i> 提交中...';
 
     const data = Object.fromEntries(new FormData(form).entries());
+    console.log('送出的資料 =', data);
 
     fetch(GAS_URL, {
       method: 'POST',
@@ -694,27 +700,32 @@ function setupFormSubmission() {
       mode: 'no-cors',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' }
     })
-    .then(() => {
-      btn.innerHTML = '<i class="fa fa-check mr-2"></i> 提交成功';
-      btn.classList.remove('bg-primary'); btn.classList.add('bg-green-600');
-      form.reset();
-    })
-    .catch(() => {
-      btn.innerHTML = '<i class="fa fa-times mr-2"></i> 提交失敗';
-      btn.classList.remove('bg-primary'); btn.classList.add('bg-red-600');
-    })
-    .finally(() => {
-      setTimeout(() => {
-        btn.disabled = false;
-        btn.innerHTML = original;
-        btn.classList.remove('bg-green-600','bg-red-600'); btn.classList.add('bg-primary');
-      }, 3000);
-    });
+      .then(() => {
+        console.log('已送出到 GAS（no-cors 看不到回應）');
+        btn.innerHTML = '<i class="fa fa-check mr-2"></i> 提交成功';
+        btn.classList.remove('bg-primary');
+        btn.classList.add('bg-green-600');
+        form.reset();
+      })
+      .catch((err) => {
+        console.error('送出失敗：', err);
+        btn.innerHTML = '<i class="fa fa-times mr-2"></i> 提交失敗';
+        btn.classList.remove('bg-primary');
+        btn.classList.add('bg-red-600');
+      })
+      .finally(() => {
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.innerHTML = original;
+          btn.classList.remove('bg-green-600', 'bg-red-600');
+          btn.classList.add('bg-primary');
+        }, 3000);
+      });
   });
 }
-window.addEventListener('DOMContentLoaded', () => {
-  setupFormSubmission();
-});
+
+// 直接在 script 載入時呼叫，不再用 DOMContentLoaded
+setupFormSubmission();
 </script>
 </body>
 </html>
