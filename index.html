@@ -497,7 +497,13 @@
           <div>
             <label for="event-date" class="form-label">預計活動日期</label>
             <!-- 若想用日期挑選器，可改 type="date" -->
-            <input type="text" id="event-date" name="event-date" required class="form-input" placeholder="例如：12/25、1月中旬、或三個備選日期">
+            <input
+  type="text"
+  id="date"
+  name="date"
+  required
+  class="form-input"
+  placeholder="例如：12/25、1月中旬、或三個備選日期">
           </div>
 
           <div>
@@ -526,7 +532,11 @@
 
           <div>
             <label for="notes" class="form-label">備註</label>
-            <textarea id="notes" name="notes" class="form-textarea" placeholder="如需抽獎活動、素食/清真、無酒精飲品、Logo 小旗等，請在此備註"></textarea>
+            <textarea
+  id="message"
+  name="message"
+  class="form-textarea"
+  placeholder="如需抽獎活動、素食/清真、無酒精飲品、Logo 小旗等，請在此備註"></textarea>
             <p class="text-sm text-gray-500 mt-2">我們將於 24 小時內與您聯繫，協助規劃最合適的方案。</p>
           </div>
 
@@ -665,7 +675,7 @@
 </script>
   <script>
 function setupFormSubmission() {
-  const GAS_URL = 'https://script.google.com/macros/s/你的_GAS_URL/exec';
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycby756weZ-_e5IdekU9mKi7GTgd52pf6YXdmBLo_lirqCtiPb64_u8vc4e53aKnM5YvqFA/exec';
   const form = document.getElementById('contact-form');
   if (!form) return;
 
