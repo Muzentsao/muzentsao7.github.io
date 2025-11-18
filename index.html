@@ -282,9 +282,13 @@
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- 案例1 -->
         <div class="rounded-xl overflow-hidden shadow-lg hover-lift scroll-reveal">
-          <img src="LINE_ALBUM_2025.1.17Crystal Wang - 50人茶點_2.0.jpg" alt="企業尾牙佈置實例" class="w-full h-64 object-cover image-zoom">
+          <img 
+            src="LINE_ALBUM_2025.1.17Crystal Wang - 50人茶點_2.0.jpg" 
+            alt="企業尾牙佈置實例" 
+            class="w-full h-64 object-cover image-zoom cursor-pointer" 
+            onclick="openLightbox(this.src)"
+          >
           <div class="p-6 bg-white">
             <h3 class="text-xl font-semibold mb-2 flex items-center">
               <i class="fa fa-building text-primary mr-2"></i>
@@ -294,9 +298,13 @@
           </div>
         </div>
 
-        <!-- 案例2 -->
         <div class="rounded-xl overflow-hidden shadow-lg hover-lift scroll-reveal" style="transition-delay: 0.2s;">
-          <img src="LINE_ALBUM_2025.01.07 楊小姐 30人茶點(國泰置地廣場-萬事達)_250321_11.jpg" alt="尾牙餐點" class="w-full h-64 object-cover image-zoom">
+          <img 
+            src="LINE_ALBUM_2025.01.07 楊小姐 30人茶點(國泰置地廣場-萬事達)_250321_11.jpg" 
+            alt="尾牙餐點" 
+            class="w-full h-64 object-cover image-zoom cursor-pointer" 
+            onclick="openLightbox(this.src)"
+          >
           <div class="p-6 bg-white">
             <h3 class="text-xl font-semibold mb-2 flex items-center">
               <i class="fa fa-cutlery text-primary mr-2"></i>
@@ -306,9 +314,12 @@
           </div>
         </div>
 
-        <!-- 案例3 -->
         <div class="rounded-xl overflow-hidden shadow-lg hover-lift scroll-reveal" style="transition-delay: 0.4s;">
-          <img src="LINE_ALBUM_2023.9.28鐘子婷_231019_9.jpg" class="w-full h-64 object-cover image-zoom">
+          <img 
+            src="LINE_ALBUM_2023.9.28鐘子婷_231019_9.jpg" 
+            class="w-full h-64 object-cover image-zoom cursor-pointer" 
+            onclick="openLightbox(this.src)"
+          >
           <div class="p-6 bg-white">
             <h3 class="text-xl font-semibold mb-2 flex items-center">
               <i class="fa fa-gift text-primary mr-2"></i>
@@ -318,9 +329,13 @@
           </div>
         </div>
 
-        <!-- 案例4 -->
         <div class="rounded-xl overflow-hidden shadow-lg hover-lift scroll-reveal" style="transition-delay: 0.1s;">
-          <img src="LINE_ALBUM_2025.01.22 李先生50人正餐 (GOLF MONSTERS 敦北旗艦店)_2.0.jpg" alt="家庭尾牙聚會" class="w-full h-64 object-cover image-zoom">
+          <img 
+            src="LINE_ALBUM_2025.01.22 李先生50人正餐 (GOLF MONSTERS 敦北旗艦店)_2.0.jpg" 
+            alt="家庭尾牙聚會" 
+            class="w-full h-64 object-cover image-zoom cursor-pointer" 
+            onclick="openLightbox(this.src)"
+          >
           <div class="p-6 bg-white">
             <h3 class="text-xl font-semibold mb-2 flex items-center">
               <i class="fa fa-users text-primary mr-2"></i>
@@ -726,6 +741,52 @@ function setupFormSubmission() {
 
 // 直接在 script 載入時呼叫，不再用 DOMContentLoaded
 setupFormSubmission();
+</script>
+  <div id="lightbox-modal" class="fixed inset-0 z-[100] hidden bg-black/90 backdrop-blur-sm flex items-center justify-center opacity-0 transition-opacity duration-300" onclick="closeLightbox()">
+    <button class="absolute top-5 right-5 text-white/80 hover:text-white text-4xl font-bold z-[101] transition-colors">&times;</button>
+    
+    <img id="lightbox-img" src="" alt="放大預覽" class="max-h-[90vh] max-w-[90vw] object-contain shadow-2xl rounded-lg transform scale-95 transition-transform duration-300" onclick="event.stopPropagation()">
+</div>
+  <script>
+  // Lightbox 控制邏輯
+  const modal = document.getElementById('lightbox-modal');
+  const modalImg = document.getElementById('lightbox-img');
+
+  function openLightbox(src) {
+    // 設定圖片路徑
+    modalImg.src = src;
+    // 顯示視窗
+    modal.classList.remove('hidden');
+    // 加入動畫延遲，讓透明度漸變生效
+    setTimeout(() => {
+      modal.classList.remove('opacity-0');
+      modalImg.classList.remove('scale-95');
+      modalImg.classList.add('scale-100');
+    }, 10);
+    // 禁止背景捲動
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    // 開始淡出動畫
+    modal.classList.add('opacity-0');
+    modalImg.classList.remove('scale-100');
+    modalImg.classList.add('scale-95');
+    
+    // 等待動畫結束後再隱藏
+    setTimeout(() => {
+      modal.classList.add('hidden');
+      modalImg.src = ''; // 清空圖片
+      document.body.style.overflow = ''; // 恢復背景捲動
+    }, 300);
+  }
+  
+  // 支援按 ESC 鍵關閉
+  document.addEventListener('keydown', function(e) {
+      if (e.key === "Escape") {
+          closeLightbox();
+      }
+  });
 </script>
 </body>
 </html>
