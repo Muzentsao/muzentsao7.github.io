@@ -788,6 +788,87 @@ setupFormSubmission();
       }
   });
 </script>
+  <div class="fixed bottom-6 right-6 z-[90]">
+  <button 
+    onclick="toggleLineQr()"
+    class="relative group bg-[#06C755] hover:bg-[#05b34c] text-white rounded-full p-4 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 flex items-center justify-center"
+    aria-label="加入官方LINE"
+  >
+    <span class="absolute inline-flex h-full w-full rounded-full bg-[#06C755] opacity-75 animate-ping group-hover:hidden"></span>
+    
+    <i class="fa fa-commenting-o text-2xl relative z-10"></i>
+  </button>
+  
+  <span class="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-white text-gray-800 text-xs font-bold px-2 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+    加入官方 LINE
+  </span>
+</div>
+
+<div id="line-qr-modal" class="fixed inset-0 z-[100] hidden bg-black/80 backdrop-blur-sm flex items-center justify-center opacity-0 transition-opacity duration-300" onclick="toggleLineQr()">
+  
+  <div class="bg-white rounded-2xl p-6 max-w-sm w-[90%] mx-auto relative shadow-2xl transform scale-95 transition-transform duration-300" onclick="event.stopPropagation()">
+    
+    <button onclick="toggleLineQr()" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100">
+      <i class="fa fa-times text-xl"></i>
+    </button>
+
+    <div class="text-center mb-6 mt-2">
+      <h3 class="text-xl font-bold text-[#06C755] mb-1">
+        <i class="fa fa-line"></i> 加入官方 LINE
+      </h3>
+      <p class="text-gray-500 text-sm">獲取最新尾牙優惠資訊</p>
+    </div>
+
+    <div class="bg-gray-100 p-2 rounded-xl mb-6 mx-auto w-fit">
+      <img 
+        src="S_gainfriends_2dbarcodes_GW.png" 
+        alt="LINE QR Code" 
+        class="w-48 h-48 object-contain"
+      >
+    </div>
+
+    <div class="space-y-3">
+      <p class="text-center text-xs text-gray-400 mb-2">手機用戶可直接點擊下方按鈕</p>
+      
+      <a 
+        href="https://lin.ee/GDoyPqd" 
+        target="_blank"
+        class="block w-full bg-[#06C755] hover:bg-[#05b34c] text-white text-center font-bold py-3 px-4 rounded-xl transition-colors shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+      >
+        <i class="fa fa-comment"></i> 點擊直接加入好友
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleLineQr() {
+    const modal = document.getElementById('line-qr-modal');
+    const modalContent = modal.querySelector('div'); // 選取內部的白色卡片
+
+    if (modal.classList.contains('hidden')) {
+      // 開啟
+      modal.classList.remove('hidden');
+      // 延遲一點點讓透明度動畫生效
+      setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        modalContent.classList.remove('scale-95');
+        modalContent.classList.add('scale-100');
+      }, 10);
+      document.body.style.overflow = 'hidden'; // 禁止背景捲動
+    } else {
+      // 關閉
+      modal.classList.add('opacity-0');
+      modalContent.classList.remove('scale-100');
+      modalContent.classList.add('scale-95');
+      
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        document.body.style.overflow = ''; // 恢復背景捲動
+      }, 300);
+    }
+  }
+</script>
 </body>
 </html>
 
