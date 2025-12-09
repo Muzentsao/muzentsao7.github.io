@@ -155,31 +155,34 @@
         </a>
       </nav>
 
-      <!-- Hero 內容：左標題右資訊卡 -->
-      <div class="mt-10 grid gap-10 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] items-center">
-        <!-- 左側主標題 -->
-        <div class="text-white">
-          <p class="text-xs tracking-[0.3em] uppercase mb-3">
-  YEAR-END CATERING ／ 尾牙春酒外燴
-</p>
-<h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-  木人艸尾牙春酒外燴服務
-</h1>
-<p class="mt-5 max-w-xl text-sm sm:text-base text-neutral-100">
-  從到府佈置、節慶餐點到外燴現場服務，在預算內打造有儀式感、
-  好拍又好吃的年終聚會。
-</p>
-          <div class="mt-8 flex flex-wrap gap-4">
+      <div class="mt-10 flex flex-col gap-10 relative z-10">
+        
+        <div class="text-white max-w-4xl">
+          <p class="text-xs tracking-[0.3em] uppercase mb-3 text-goldLight/90">
+            YEAR-END CATERING ／ 尾牙春酒外燴
+          </p>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-shadow">
+            木人艸尾牙春酒外燴服務
+          </h1>
+          <p class="mt-5 max-w-xl text-sm sm:text-base text-neutral-100 leading-relaxed text-shadow">
+            從到府佈置、節慶餐點到外燴現場服務，在預算內打造有儀式感、
+            好拍又好吃的年終聚會。
+          </p>
+        </div>
+
+        <div class="grid gap-8 md:grid-cols-[1fr_minmax(320px,auto)] items-end">
+          
+          <div class="flex flex-wrap gap-4 pb-1">
             <a
               href="#contact"
-              class="inline-flex items-center rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow hover:bg-secondary transition"
+              class="inline-flex items-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white shadow hover:bg-secondary transition hover:-translate-y-1"
             >
               立即預約諮詢
             </a>
 
             <button
               onclick="toggleLineQr()"
-              class="inline-flex items-center rounded-full bg-[#06C755] hover:bg-[#05b34c] px-6 py-2.5 text-sm font-semibold text-white shadow transition hover:shadow-lg"
+              class="inline-flex items-center rounded-full bg-[#06C755] hover:bg-[#05b34c] px-6 py-3 text-sm font-semibold text-white shadow transition hover:shadow-lg hover:-translate-y-1"
             >
               <i class="fa fa-commenting-o mr-2 text-lg"></i>
               加入 Line 好友
@@ -187,35 +190,35 @@
 
             <a
               href="#cases"
-              class="inline-flex items-center rounded-full border border-white/70 px-5 py-2.5 text-sm font-medium text-white/90 hover:bg-white/10 transition"
+              class="inline-flex items-center rounded-full border border-white/70 px-6 py-3 text-sm font-medium text-white/90 hover:bg-white/10 transition hover:-translate-y-1"
             >
               查看尾牙案例
             </a>
           </div>
 
-        <!-- 右側白色資訊卡 -->
-        <div class="rounded-3xl bg-white/70 backdrop-blur shadow-xl p-6 sm:p-8 text-sm text-neutral-700">
-          <p class="text-xs font-semibold text-primary tracking-[0.25em] uppercase mb-2">
-            HOW WE HELP
-          </p>
-          <h2 class="text-lg font-semibold text-neutral-900 mb-3">
-            把尾牙交給木人艸，你可以只專心陪同事吃飯
-          </h2>
-          <ul class="space-y-2 mb-4">
-            <li>・紅金年節花藝與紙扇佈置，讓辦公室秒變尾牙現場</li>
-            <li>・正餐＋茶點外燴，一次規劃好吃又好拍的餐檯</li>
-            <li>・當天餐檯佈置、補餐維護與撤場還原全程服務</li>
-          </ul>
-          <a
-            href="#services"
-            class="inline-flex items-center text-xs font-medium text-primary hover:text-secondary"
-          >
-            看完整服務介紹
-            <span class="ml-1">→</span>
-          </a>
+          <div class="rounded-3xl bg-white/70 backdrop-blur shadow-xl p-6 sm:p-8 text-sm text-neutral-700 w-full">
+            <p class="text-xs font-semibold text-primary tracking-[0.25em] uppercase mb-2">
+              HOW WE HELP
+            </p>
+            <h2 class="text-lg font-semibold text-neutral-900 mb-3">
+              把尾牙交給木人艸，你可以只專心陪同事吃飯
+            </h2>
+            <ul class="space-y-2 mb-4">
+              <li>・紅金年節花藝與紙扇佈置，讓辦公室秒變尾牙現場</li>
+              <li>・正餐＋茶點外燴，一次規劃好吃又好拍的餐檯</li>
+              <li>・當天餐檯佈置、補餐維護與撤場還原全程服務</li>
+            </ul>
+            <a
+              href="#services"
+              class="inline-flex items-center text-xs font-medium text-primary hover:text-secondary"
+            >
+              看完整服務介紹
+              <span class="ml-1">→</span>
+            </a>
+          </div>
+
         </div>
       </div>
-    </div>
 
     <!-- 底部漸層，讓 header 和下一區塊銜接 -->
     <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>
